@@ -133,7 +133,6 @@ class Window:
         asyncio.run(self.fuckPythonAsync(maze))
 
     async def fuckPythonAsync(self, maze):
-        rows, cols = self.__size_var
         t1 = asyncio.create_task(maze.solve())
         t2 = asyncio.create_task(maze.solve_dfs_bottom_right())
         await asyncio.gather(t1, t2)
