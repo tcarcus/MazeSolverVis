@@ -37,16 +37,10 @@ To run this project, ensure you have Python 3.x installed on your machine. Follo
 
     Size Selection Buttons: Choose the size of the maze you want to generate (e.g., 4x4, 8x8, 12x17).
     Control Buttons:
-        Shuffle: Generate a new maze based on the selected size.
-        Bottom/Right DFS: Solve the maze using the bottom/right prioritization strategy.
+        Shuffle: Generate maze and solve it using random shuffle DFS
+        Bottom/Right DFS: Generate Maze and solve the maze using the bottom/right prioritization strategy.
         Compare: Solve the maze using both strategies simultaneously for visual comparison.
 
-### Controls
-
-    Click the desired size button to set the maze dimensions.
-    Click Shuffle to create a new maze.
-    Click Bottom/Right DFS to visualize the solving process using the specified strategy.
-    Click Compare to see both solving strategies in action.
 
 ### Code Structure
 
