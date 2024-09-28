@@ -17,23 +17,23 @@ To run this project, ensure you have Python 3.x installed on your machine. Follo
 
 1. Clone the repository:
 
-   ```bash
-   git clone https://github.com/your-username/MazeSolverVis.git
+```bash
+  git clone https://github.com/your-username/MazeSolverVis.git
 
-    Navigate into the project directory:
+  Navigate into the project directory:
 
 
   cd MazeSolverVis
 
-Run the application:
+  Run the application:
 
 
-    python3 main.py
+  python3 main.py
 ```
 
-##Usage
+## Usage
 
-###Upon running the application, a window will appear with the following components:
+### Upon running the application, a window will appear with the following components:
 
     Size Selection Buttons: Choose the size of the maze you want to generate (e.g., 4x4, 8x8, 12x17).
     Control Buttons:
@@ -41,21 +41,21 @@ Run the application:
         Bottom/Right DFS: Solve the maze using the bottom/right prioritization strategy.
         Compare: Solve the maze using both strategies simultaneously for visual comparison.
 
-###Controls
+### Controls
 
     Click the desired size button to set the maze dimensions.
     Click Shuffle to create a new maze.
     Click Bottom/Right DFS to visualize the solving process using the specified strategy.
     Click Compare to see both solving strategies in action.
 
-###Code Structure
+### Code Structure
 
     main.py: Entry point for the application.
     gui.py: Contains the GUI logic using tkinter.
     maze.py: Handles maze generation and solving algorithms.
     helper.py: Contains utility classes like Cell, Line, and Point used for drawing.
 
-Con###tributing
+### Contributing
 
 Contributions are welcome! If you have suggestions or improvements, feel free to fork the repository and submit a pull request.
 License
