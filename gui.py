@@ -57,6 +57,18 @@ class Window:
         )
         self.overlap_button.pack(pady=10)
 
+        self.overlap_button = Button(
+            self.__button_frame,
+            text="BFSvDFS",
+            command=self.start_bfs_v_dfs,
+            bg="#4CAF50",
+            fg="white",
+            font=("Arial", 14),
+            padx=10,
+            pady=5,
+        )
+        self.overlap_button.pack(pady=10)
+
     def create_size_buttons(self):
         sizes = [
             (4, 4),  # Small
@@ -131,6 +143,25 @@ class Window:
         maze.generate_maze()
         Cell.set_compare(True)
         asyncio.run(self.fuckPythonAsync(maze))
+
+    def start_bfs_v_dfs(self):
+        if self.__size_var is None:
+            print("Please select a maze sie first.")
+            return
+
+        rows, cols = self.__size_var
+        self.__canvas.delete("all")
+        maze = Maze(50, 50, rows, cols, 50, 50, self, seed=None)
+
+        maze.generate_maze()
+        Cell.set_compare(True)
+        asyncio.run(self.moreFuckPythonAsync(maze))
+
+    async def moreFuckPythonAsync(self, maze):
+        t1 = asyncio.create_task(maze.solve_dfs_bottom_right())
+        t2 = asyncio.create_task(maze.solve_bfs())
+
+        await asyncio.gather(t1, t2)
 
     async def fuckPythonAsync(self, maze):
         t1 = asyncio.create_task(maze.solve())

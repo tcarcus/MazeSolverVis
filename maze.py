@@ -1,6 +1,7 @@
 import asyncio
 import random
 import time
+from collections import deque
 from helper import Cell
 
 
@@ -279,5 +280,77 @@ class Maze:
                     self._win.draw_cell_move(current_cell, mx[ni][nj], undo=True)
                     self._win.redraw()
                     await asyncio.sleep(0.3)
+
+        return False
+
+    async def solve_bfs(self):
+        self._reset_cells_visited()
+        copy_cells = self.copy_cells()
+        print("Starting to solve the maze with BFS...")
+        success = await self._bfs(0, 0, copy_cells)
+        if success:
+            print("Maze solved successfully!")
+        else:
+            print("No solution found.")
+
+    async def _bfs(self, start_i, start_j, mx):
+        queue = deque([(start_i, start_j)])
+        mx[start_i][start_j].visited = True
+
+        parent_map = {}
+
+        directions = [(1, 0), (0, 1), (0, -1), (-1, 0)]
+
+        while queue:
+            i, j = queue.popleft()
+            current_cell = mx[i][j]
+
+            if i == self._num_rows - 1 and j == self._num_cols - 1:
+                while (i, j) in parent_map:
+                    parent_i, parent_j = parent_map[(i, j)]
+                    self._win.draw_cell_move(
+                        mx[parent_i][parent_j], mx[i][j], path=True, br=True
+                    )
+                    i, j = parent_i, parent_j
+                return True
+
+            for direction in directions:
+                ni, nj = i + direction[0], j + direction[1]
+                if (
+                    0 <= ni < self._num_rows
+                    and 0 <= nj < self._num_cols
+                    and not mx[ni][nj].visited
+                ):
+                    if direction == (1, 0) and not self._cells[i][j].has_bottom_wall:
+                        queue.append((ni, nj))
+                        mx[ni][nj].visited = True
+                        parent_map[(ni, nj)] = (i, j)
+                        self._win.draw_cell_move(current_cell, mx[ni][nj], br=True)
+                        self._win.redraw()
+                        await asyncio.sleep(0.1)
+
+                    elif direction == (0, 1) and not mx[i][j].has_right_wall:
+                        queue.append((ni, nj))
+                        mx[ni][nj].visited = True
+                        parent_map[(ni, nj)] = (i, j)
+                        self._win.draw_cell_move(current_cell, mx[ni][nj], br=True)
+                        self._win.redraw()
+                        await asyncio.sleep(0.1)
+
+                    elif direction == (0, -1) and not mx[ni][nj].has_right_wall:
+                        queue.append((ni, nj))
+                        mx[ni][nj].visited = True
+                        parent_map[(ni, nj)] = (i, j)
+                        self._win.draw_cell_move(current_cell, mx[ni][nj], br=True)
+                        self._win.redraw()
+                        await asyncio.sleep(0.1)
+
+                    elif direction == (-1, 0) and not mx[ni][nj].has_bottom_wall:
+                        queue.append((ni, nj))
+                        mx[ni][nj].visited = True
+                        parent_map[(ni, nj)] = (i, j)
+                        self._win.draw_cell_move(current_cell, mx[ni][nj], br=True)
+                        self._win.redraw()
+                        await asyncio.sleep(0.1)
 
         return False
