@@ -6,9 +6,10 @@ A fun and interactive maze solver implemented using Python's `tkinter` library f
 
 - Random maze generation with customizable sizes.
 - Visual representation of the maze and solving process.
-- Two solving strategies:
+- Three solving strategies:
   - Standard DFS.
-  - Bottom/Right DFS, which emphasizes moving downwards and to the right.
+  - Bottom/Right DFS, which emphasizes moving downwards and to the right.  
+  - BFS (only in comparison against bottom/right DFS)
 - Ability to visualize the maze generation and solution paths in real-time.
 
 ## Installation
@@ -40,6 +41,7 @@ To run this project, ensure you have Python 3.x installed on your machine. Follo
         Shuffle: Generate maze and solve it using random shuffle DFS
         Bottom/Right DFS: Generate Maze and solve the maze using the bottom/right prioritization strategy.
         Compare: Solve the maze using both strategies simultaneously for visual comparison.
+        BFSvDfs: Solve the maze using BFS and DFS simultaneously for visual comparison.
 
 
 ### Code Structure
