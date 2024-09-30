@@ -238,7 +238,7 @@ class Maze:
 
                     self._win.draw_cell_move(current_cell, mx[ni][nj], undo=True)
                     self._win.redraw()
-                    await asyncio.sleep(0.3)
+                    await asyncio.sleep(0.1)
 
                 elif direction == (0, 1) and not mx[i][j].has_right_wall:
                     self._win.draw_cell_move(current_cell, mx[ni][nj])
@@ -252,7 +252,7 @@ class Maze:
 
                     self._win.draw_cell_move(current_cell, mx[ni][nj], undo=True)
                     self._win.redraw()
-                    await asyncio.sleep(0.3)
+                    await asyncio.sleep(0.1)
 
                 elif direction == (0, -1) and not mx[ni][nj].has_right_wall:
                     self._win.draw_cell_move(current_cell, mx[ni][nj])
@@ -266,7 +266,7 @@ class Maze:
 
                     self._win.draw_cell_move(current_cell, mx[ni][nj], undo=True)
                     self._win.redraw()
-                    await asyncio.sleep(0.3)
+                    await asyncio.sleep(0.1)
 
                 elif direction == (-1, 0) and not mx[ni][nj].has_bottom_wall:
                     self._win.draw_cell_move(current_cell, mx[ni][nj])
@@ -279,7 +279,7 @@ class Maze:
 
                     self._win.draw_cell_move(current_cell, mx[ni][nj], undo=True)
                     self._win.redraw()
-                    await asyncio.sleep(0.3)
+                    await asyncio.sleep(0.1)
 
         return False
 
